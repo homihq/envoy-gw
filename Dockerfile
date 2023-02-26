@@ -1,3 +1,7 @@
-FROM envoyproxy/envoy-dev:f2e49c86b2edca1c65c7a375a7629f46d3c78e4e
+FROM envoyproxy/envoy-dev:latest
+
 COPY envoy.yaml /etc/envoy/envoy.yaml
+
 RUN chmod go+r /etc/envoy/envoy.yaml
+
+CMD ["/usr/local/bin/envoy", "-c", "/etc/envoy/envoy.yaml", "--service-cluster", "front-proxy"]
